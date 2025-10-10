@@ -16,13 +16,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build
-      run: cargo build --verbose
-    - name: Format
-      run: cargo fmt
-    - name: Lint
-      run: cargo clippy --all-targets --all-features -- -D warnings
+    - uses: uncenter/setup-taplo@v1
+      with:
+        version: "0.8.1"
+    - name: Taplo
+      run: taplo fmt foo.toml --check
     - name: cargo-machete
       uses: bnjbvr/cargo-machete@v0.9.1
+    - name: Format
+      run: cargo fmt --check
+    - name: Build
+      run: cargo build --verbose
+    - name: Lint
+      run: cargo clippy --all-targets --all-features -- -D warnings
     - name: Run tests
       run: cargo test --verbose
