@@ -20,5 +20,9 @@ jobs:
       run: cargo build --verbose
     - name: Format
       run: cargo fmt
+    - name: Lint
+      run: cargo clippy --all-targets --all-features -- -D warnings
+    - name: cargo-machete
+      uses: bnjbvr/cargo-machete@v0.9.1
     - name: Run tests
       run: cargo test --verbose
