@@ -1,6 +1,9 @@
 use std::sync::LazyLock;
 
-use crate::model::{AnnualResult, Crew, CrewResult, Position, Year};
+use crate::{
+    errors::ApiError,
+    model::{AnnualResult, Crew, CrewResult, Position, Year},
+};
 use axum::{extract::Path, routing::get, Json, Router};
 
 static MENS_RESULTS: LazyLock<String> =
@@ -8,27 +11,38 @@ static MENS_RESULTS: LazyLock<String> =
 static WOMENS_RESULTS: LazyLock<String> =
     LazyLock::new(|| include_str!("data/results_women.json").to_string());
 
-async fn get_mens_results() -> Json<Vec<AnnualResult>> {
-    let results: Vec<AnnualResult> = serde_json::from_str(&MENS_RESULTS).unwrap();
-    Json(results)
+async fn get_mens_results() -> Result<Json<Vec<AnnualResult>>, ApiError> {
+    println!("Fetching all men's results");
+    let results: Vec<AnnualResult> = serde_json::from_str(&MENS_RESULTS)?;
+    Ok(Json(results))
 }
 
-async fn get_womens_results() -> Json<Vec<AnnualResult>> {
-    let results: Vec<AnnualResult> = serde_json::from_str(&WOMENS_RESULTS).unwrap();
-    Json(results)
+async fn get_womens_results() -> Result<Json<Vec<AnnualResult>>, ApiError> {
+    println!("Fetching all women's results");
+    let results: Vec<AnnualResult> = serde_json::from_str(&WOMENS_RESULTS)?;
+    Ok(Json(results))
 }
 
-async fn get_all_results_for_mens_crew(Path(crew): Path<Crew>) -> Json<CrewResult> {
-    let all_results: Vec<AnnualResult> = serde_json::from_str(&MENS_RESULTS).unwrap();
+async fn get_all_results_for_mens_crew(
+    Path(crew): Path<Crew>,
+) -> Result<Json<CrewResult>, ApiError> {
+    println!("Fetching all results for men's crew: {:?}", crew);
+    let all_results: Vec<AnnualResult> = serde_json::from_str(&MENS_RESULTS)?;
     get_all_results_for_crew(crew, all_results).await
 }
 
-async fn get_all_results_for_womens_crew(Path(crew): Path<Crew>) -> Json<CrewResult> {
-    let all_results: Vec<AnnualResult> = serde_json::from_str(&WOMENS_RESULTS).unwrap();
+async fn get_all_results_for_womens_crew(
+    Path(crew): Path<Crew>,
+) -> Result<Json<CrewResult>, ApiError> {
+    println!("Fetching all results for women's crew: {:?}", crew);
+    let all_results: Vec<AnnualResult> = serde_json::from_str(&WOMENS_RESULTS)?;
     get_all_results_for_crew(crew, all_results).await
 }
 
-async fn get_all_results_for_crew(crew: Crew, all_results: Vec<AnnualResult>) -> Json<CrewResult> {
+async fn get_all_results_for_crew(
+    crew: Crew,
+    all_results: Vec<AnnualResult>,
+) -> Result<Json<CrewResult>, ApiError> {
     let filtered_results: Vec<(Year, Position)> = all_results
         .into_iter()
         .filter(|result| result.standings().contains(&crew))
@@ -39,20 +53,28 @@ async fn get_all_results_for_crew(crew: Crew, all_results: Vec<AnnualResult>) ->
             )
         })
         .collect();
-    Json(CrewResult::new(crew, filtered_results))
+    if filtered_results.is_empty() {
+        println!("No results found for crew: {:?}", crew);
+        return Err(ApiError::BadRequest(format!(
+            "Boat {} does not exist for {} college",
+            crew.boat(),
+            crew.college()
+        )));
+    }
+    Ok(Json(CrewResult::new(crew, filtered_results)))
 }
 
 pub fn app() -> Router {
     Router::new()
         .route("/", get(|| async { "Hello, World!" }))
-        .route("/results/mens", get(get_mens_results))
-        .route("/results/womens", get(get_womens_results))
+        .route("/results/men", get(get_mens_results))
+        .route("/results/women", get(get_womens_results))
         .route(
-            "/results/mens/{college}/{boat}",
+            "/results/men/{college}/{boat}",
             get(get_all_results_for_mens_crew),
         )
         .route(
-            "/results/womens/{college}/{boat}",
+            "/results/women/{college}/{boat}",
             get(get_all_results_for_womens_crew),
         )
 }
@@ -84,7 +106,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_all_mens_results() {
-        let response = setup_and_get_response("/results/mens").await;
+        let response = setup_and_get_response("/results/men").await;
         assert_eq!(response.status(), StatusCode::OK);
 
         let body_bytes = response.into_body().collect().await.unwrap().to_bytes();
@@ -95,7 +117,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_all_womens_results() {
-        let response = setup_and_get_response("/results/womens").await;
+        let response = setup_and_get_response("/results/women").await;
         assert_eq!(response.status(), StatusCode::OK);
 
         let body_bytes = response.into_body().collect().await.unwrap().to_bytes();
@@ -106,7 +128,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_all_results_for_mens_crew() {
-        let response = setup_and_get_response("/results/mens/Trinity/1").await;
+        let response = setup_and_get_response("/results/men/Trinity/1").await;
         assert_eq!(response.status(), StatusCode::OK);
 
         let body_bytes = response.into_body().collect().await.unwrap().to_bytes();
@@ -127,7 +149,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_all_results_for_womens_crew() {
-        let response = setup_and_get_response("/results/womens/Hertford/2").await;
+        let response = setup_and_get_response("/results/women/Hertford/2").await;
         assert_eq!(response.status(), StatusCode::OK);
 
         let body_bytes = response.into_body().collect().await.unwrap().to_bytes();
@@ -144,5 +166,23 @@ mod tests {
             38,
             "Should contain 38 years of results"
         );
+    }
+
+    #[tokio::test]
+    async fn nonexistent_college_returns_error() {
+        let response = setup_and_get_response("/results/men/Nonexistent/1").await;
+        assert_eq!(response.status(), StatusCode::BAD_REQUEST);
+        let body_bytes = response.into_body().collect().await.unwrap().to_bytes();
+        let body_str = std::str::from_utf8(&body_bytes).unwrap();
+        assert!(body_str.contains("Invalid URL: unknown variant `Nonexistent`, expected one of"));
+    }
+
+    #[tokio::test]
+    async fn nonexistent_boat_returns_error() {
+        let response = setup_and_get_response("/results/women/Hertford/99").await;
+        assert_eq!(response.status(), StatusCode::BAD_REQUEST);
+        let body_bytes = response.into_body().collect().await.unwrap().to_bytes();
+        let body_str = std::str::from_utf8(&body_bytes).unwrap();
+        assert!(body_str.contains("Boat 99 does not exist for Hertford college"));
     }
 }
