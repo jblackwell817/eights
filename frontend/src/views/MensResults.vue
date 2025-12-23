@@ -1,12 +1,18 @@
-<script setup>
-import { ref, onMounted } from 'vue'
+<script>
+export default {
+  data() {
+    return {
+      results: [],
+    }
+  },
 
-const results = ref([])
+  methods: {},
 
-onMounted(async () => {
-  const res = await fetch('/results/men')
-  results.value = await res.json()
-})
+  async mounted() {
+    const res = await fetch('/api/results/men')
+    this.results = await res.json()
+  },
+}
 </script>
 
 <template>
@@ -14,7 +20,10 @@ onMounted(async () => {
     <h1 class="text-xl font-bold">Men’s Results</h1>
     <ul>
       <li v-for="(r, i) in results" :key="i">
-        {{ r.college }} - {{ r.boat }} - {{ r.time }}
+        {{ r.year }}:
+        <ul>
+          <li v-for="(s, j) in r.standings" :key="j">{{ s.college }} {{ s.boat }}</li>
+        </ul>
       </li>
     </ul>
   </div>
