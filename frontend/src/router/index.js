@@ -4,14 +4,20 @@ import WomensResults from '../views/WomensResults.vue'
 import CrewResults from '../views/CrewResults.vue'
 
 const routes = [
-  { path: '/results/men', component: MensResults },
-  { path: '/results/women', component: WomensResults },
-  { path: '/results/:gender/:college/:boat', component: CrewResults },
+  { path: '/results/men', name: 'MensResults', component: MensResults },
+  { path: '/results/women', name: 'WomensResults', component: WomensResults },
+  {
+    path: '/results/:gender/:college/:boat',
+    name: 'CrewResults',
+    component: CrewResults,
+    props: true,
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  linkActiveClass: 'text-blue-500 font-bold',
 })
 
 export default router
