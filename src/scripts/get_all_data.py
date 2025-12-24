@@ -21,16 +21,32 @@ ROMAN_MAP = {
     "X": 10
 }
 
-# Mapping for special college renames
+# Mapping for college renames
 RENAME_MAP = {
-    "Brasenose/StPeters": "BrasenoseStPeters",
-    "LMH": "LadyMargaretHall",
-    "Manchester": "HarrisManchester",
+    "Brasenose/StPeters": "Brasenose/St Peters",
+    "ChristChurch": "Christ Church",
+    "CorpusChristi": "Corpus Christi",
+    "GreenTempleton": "Green Templeton",
+    "HarrisManchester": "Harris Manchester",
+    "LMH": "Lady Margaret Hall",
+    "Manchester": "Harris Manchester",
     "NewCollege": "New",
-    "Osler-Green": "OslerGreen",
-    "SEH": "StEdmundHall",
-    "StAnnes/StHildas": "StAnnesStHildas",
-    "Templeton": "GreenTempleton",
+    "Osler-Green": "Osler/Green",
+    "OslerHouse": "Osler House",
+    "RegentsPark": "Regents Park",
+    "SEH": "St Edmund Hall",
+    "StAnnes": "St Annes",
+    "StAntonys": "St Antonys",
+    "StBenetsHall": "St Benets Hall",
+    "StCatherines": "St Catherines",
+    "StEdmundHall": "St Edmund Hall",
+    "StHildas": "St Hildas",
+    "StHughs": "St Hughs",
+    "StJohns": "St Johns",
+    "StMaryHall": "St Mary Hall",
+    "StPeters": "St Peters",
+    "StAnnes/StHildas": "St Annes/St Hildas",
+    "Templeton": "Green Templeton",
 }
 
 
