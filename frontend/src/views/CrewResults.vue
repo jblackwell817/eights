@@ -1,24 +1,26 @@
-<script setup>
-import { ref, onMounted } from 'vue'
+<script>
 import { useRoute } from 'vue-router'
+export default {
+  data() {
+    return {
+      results: [],
+      route: useRoute(),
+    }
+  },
 
-const route = useRoute()
-const results = ref([])
+  methods: {},
 
-onMounted(async () => {
-  const { college, boat } = route.params
-  const res = await fetch(`/results/men/${college}/${boat}`)
-  results.value = await res.json()
-})
+  async mounted() {
+    const { gender, college, boat } = this.route.params
+    const res = await fetch(`/api/results/${gender}/${college}/${boat}`)
+    this.results = await res.json()
+  },
+}
 </script>
 
 <template>
   <div>
-    <h1>{{ route.params.college }} — {{ route.params.boat }}</h1>
-    <ul>
-      <li v-for="(r, i) in results" :key="i">
-        {{ r.place }} - {{ r.time }}
-      </li>
-    </ul>
+    <h1>{{ route.params.college }} — {{ route.params.gender }} — {{ route.params.boat }}</h1>
+    <li v-for="([year, place], i) in results.results" :key="i">{{ year }}: {{ place }}</li>
   </div>
 </template>

@@ -6,8 +6,7 @@ import CrewResults from '../views/CrewResults.vue'
 const routes = [
   { path: '/results/men', component: MensResults },
   { path: '/results/women', component: WomensResults },
-  { path: '/results/men/:college/:boat', component: CrewResults },
-  { path: '/results/women/:college/:boat', component: CrewResults },
+  { path: '/results/:gender/:college/:boat', component: CrewResults },
 ]
 
 const router = createRouter({
