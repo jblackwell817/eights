@@ -76,7 +76,7 @@ impl Crew {
 pub enum College {
     Balliol,
     Brasenose,
-    #[serde(rename = "Brasenose/St Peters")]
+    #[serde(rename = "Brasenose St Peters")]
     BrasenoseStPeters,
     #[serde(rename = "Christ Church")]
     ChristChurch,
@@ -99,7 +99,7 @@ pub enum College {
     Merton,
     New,
     Oriel,
-    #[serde(rename = "Osler/Green")]
+    #[serde(rename = "Osler Green")]
     OslerGreen,
     #[serde(rename = "Osler House")]
     OslerHouse,
@@ -110,7 +110,7 @@ pub enum College {
     Reuben,
     #[serde(rename = "St Annes")]
     StAnnes,
-    #[serde(rename = "St Annes/St Hildas")]
+    #[serde(rename = "St Annes St Hildas")]
     StAnnesStHildas,
     #[serde(rename = "St Antonys")]
     StAntonys,
