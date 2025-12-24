@@ -76,15 +76,21 @@ impl Crew {
 pub enum College {
     Balliol,
     Brasenose,
+    #[serde(rename = "Brasenose/St Peters")]
     BrasenoseStPeters,
+    #[serde(rename = "Christ Church")]
     ChristChurch,
+    #[serde(rename = "Corpus Christi")]
     CorpusChristi,
     Exeter,
+    #[serde(rename = "Green Templeton")]
     GreenTempleton,
+    #[serde(rename = "Harris Manchester")]
     HarrisManchester,
     Hertford,
     Jesus,
     Keble,
+    #[serde(rename = "Lady Margaret Hall")]
     LadyMargaretHall,
     Linacre,
     Lincoln,
@@ -93,22 +99,36 @@ pub enum College {
     Merton,
     New,
     Oriel,
+    #[serde(rename = "Osler/Green")]
     OslerGreen,
+    #[serde(rename = "Osler House")]
     OslerHouse,
     Pembroke,
     Queens,
+    #[serde(rename = "Regents Park")]
     RegentsPark,
     Reuben,
+    #[serde(rename = "St Annes")]
     StAnnes,
+    #[serde(rename = "St Annes/St Hildas")]
     StAnnesStHildas,
+    #[serde(rename = "St Antonys")]
     StAntonys,
+    #[serde(rename = "St Benets Hall")]
     StBenetsHall,
+    #[serde(rename = "St Catherines")]
     StCatherines,
+    #[serde(rename = "St Edmund Hall")]
     StEdmundHall,
+    #[serde(rename = "St Hildas")]
     StHildas,
+    #[serde(rename = "St Hughs")]
     StHughs,
+    #[serde(rename = "St Johns")]
     StJohns,
+    #[serde(rename = "St Mary Hall")]
     StMaryHall,
+    #[serde(rename = "St Peters")]
     StPeters,
     Somerville,
     Trinity,
