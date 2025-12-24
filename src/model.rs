@@ -100,6 +100,7 @@ pub enum College {
     RegentsPark,
     Reuben,
     StAnnes,
+    StAnnesStHildas,
     StAntonys,
     StBenetsHall,
     StCatherines,
