@@ -1,4 +1,6 @@
 <script>
+import { formatCollegeName } from '@/utils/formatters'
+
 export default {
   data() {
     return {
@@ -6,7 +8,9 @@ export default {
     }
   },
 
-  methods: {},
+  methods: {
+    formatCollegeName,
+  },
 
   async mounted() {
     const res = await fetch('/api/results/men')
@@ -22,7 +26,9 @@ export default {
       <li v-for="(r, i) in results" :key="i">
         {{ r.year }}:
         <ul>
-          <li v-for="(s, j) in r.standings" :key="j">{{ s.college }} {{ s.boat }}</li>
+          <li v-for="(s, j) in r.standings" :key="j">
+            {{ formatCollegeName(s.college) }} {{ s.boat }}
+          </li>
         </ul>
       </li>
     </ul>

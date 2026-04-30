@@ -85,7 +85,7 @@ export default {
         return
       }
 
-      const [college, boat] = crewId.split('-')
+      const [college, boat] = crewId.split('_')
 
       this.$router.push({
         name: 'CrewResults',
