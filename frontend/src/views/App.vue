@@ -20,14 +20,6 @@
         Women
       </router-link>
     </nav>
-
-    <!-- Crew dropdown -->
-    <select class="crew-select" v-model="selectedCrew" @change="onCrewChange">
-      <option value="">All Crews</option>
-      <option v-for="crew in availableCrews" :key="crew.id" :value="crew.id">
-        {{ crew.name }}
-      </option>
-    </select>
   </div>
 
   <router-view />
