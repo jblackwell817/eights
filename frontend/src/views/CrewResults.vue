@@ -1,5 +1,5 @@
 <script>
-import { useRoute } from 'vue-router'
+import { formatCollegeName } from '@/utils/formatters'
 export default {
   props: {
     gender: String,
@@ -11,6 +11,12 @@ export default {
     return {
       results: [],
     }
+  },
+
+  computed: {
+    formattedCollege() {
+      return formatCollegeName(this.college)
+    },
   },
 
   watch: {
@@ -34,7 +40,7 @@ export default {
 
 <template>
   <div>
-    <h1>{{ college }} {{ boat }}</h1>
+    <h1>{{ formattedCollege }} {{ boat }}</h1>
     <li v-for="([year, place], i) in results.results" :key="i">{{ year }}: {{ place }}</li>
   </div>
 </template>
