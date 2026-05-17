@@ -4,7 +4,8 @@ use crate::{
     errors::ApiError,
     model::{AnnualResult, Crew, CrewResult, Position, Year},
 };
-use axum::{extract::Path, routing::get, Json, Router};
+use axum::{extract::Path, http::header, routing::get, Json, Router};
+use tower_http::cors::{Any, CorsLayer};
 
 static MENS_RESULTS: LazyLock<String> =
     LazyLock::new(|| include_str!("data/results_men.json").to_string());
@@ -65,6 +66,19 @@ async fn get_all_results_for_crew(
 }
 
 pub fn app() -> Router {
+    let cors = CorsLayer::new()
+        .allow_origin(
+            "https://eights-3w3.pages.dev"
+                .parse::<header::HeaderValue>()
+                .unwrap(),
+        )
+        .allow_origin(
+            "https://allthebumps.co.uk"
+                .parse::<header::HeaderValue>()
+                .unwrap(),
+        )
+        .allow_methods(Any)
+        .allow_headers(Any);
     Router::new()
         .route("/api/results/men", get(get_mens_results))
         .route("/api/results/women", get(get_womens_results))
@@ -76,6 +90,7 @@ pub fn app() -> Router {
             "/api/results/women/{college}/{boat}",
             get(get_all_results_for_womens_crew),
         )
+        .layer(cors)
 }
 
 #[cfg(test)]
