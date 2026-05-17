@@ -67,16 +67,20 @@ async fn get_all_results_for_crew(
 
 pub fn app() -> Router {
     let cors = CorsLayer::new()
-        .allow_origin(
+        .allow_origin([
             "https://eights-3w3.pages.dev"
                 .parse::<header::HeaderValue>()
                 .unwrap(),
-        )
-        .allow_origin(
             "https://allthebumps.co.uk"
                 .parse::<header::HeaderValue>()
                 .unwrap(),
-        )
+            "http://localhost:5173"
+                .parse::<header::HeaderValue>()
+                .unwrap(),
+            "https://eights.fly.dev"
+                .parse::<header::HeaderValue>()
+                .unwrap(),
+        ])
         .allow_methods(Any)
         .allow_headers(Any);
     Router::new()

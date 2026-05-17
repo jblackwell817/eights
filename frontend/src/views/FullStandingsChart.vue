@@ -29,6 +29,7 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import Chart from 'chart.js/auto'
+import { API_URL } from '../config'
 
 const props = defineProps({
   gender: {
@@ -171,7 +172,7 @@ watch(data, () => initChart())
 
 async function loadData(gender) {
   if (cache[gender]) return cache[gender]
-  const res = await fetch(`/api/results/${gender}`)
+  const res = await fetch(`${API_URL}/api/results/${gender}`)
   cache[gender] = await res.json()
   return cache[gender]
 }
