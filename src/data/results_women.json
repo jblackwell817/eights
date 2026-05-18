@@ -11733,15 +11733,11 @@
         "boat": 1
       },
       {
-        "college": "University",
-        "boat": 1
-      },
-      {
         "college": "Wadham",
         "boat": 1
       },
       {
-        "college": "StEdmundHall",
+        "college": "University",
         "boat": 1
       },
       {
@@ -11749,11 +11745,11 @@
         "boat": 1
       },
       {
-        "college": "Wolfson",
+        "college": "StEdmundHall",
         "boat": 1
       },
       {
-        "college": "Oriel",
+        "college": "Wolfson",
         "boat": 1
       },
       {
@@ -11761,15 +11757,19 @@
         "boat": 1
       },
       {
+        "college": "Oriel",
+        "boat": 1
+      },
+      {
         "college": "Keble",
         "boat": 1
       },
       {
-        "college": "Magdalen",
+        "college": "StJohns",
         "boat": 1
       },
       {
-        "college": "StJohns",
+        "college": "Magdalen",
         "boat": 1
       },
       {
@@ -11781,11 +11781,11 @@
         "boat": 1
       },
       {
-        "college": "StAnnes",
+        "college": "Lincoln",
         "boat": 1
       },
       {
-        "college": "Lincoln",
+        "college": "StAnnes",
         "boat": 1
       },
       {
@@ -11793,11 +11793,11 @@
         "boat": 1
       },
       {
-        "college": "Linacre",
+        "college": "Exeter",
         "boat": 1
       },
       {
-        "college": "Exeter",
+        "college": "Linacre",
         "boat": 1
       },
       {
@@ -11809,19 +11809,19 @@
         "boat": 1
       },
       {
-        "college": "StCatherines",
-        "boat": 1
-      },
-      {
         "college": "LadyMargaretHall",
         "boat": 1
       },
       {
-        "college": "Trinity",
+        "college": "StCatherines",
         "boat": 1
       },
       {
         "college": "Merton",
+        "boat": 1
+      },
+      {
+        "college": "Trinity",
         "boat": 1
       },
       {
@@ -11837,11 +11837,15 @@
         "boat": 1
       },
       {
+        "college": "Queens",
+        "boat": 1
+      },
+      {
         "college": "Brasenose",
         "boat": 1
       },
       {
-        "college": "Queens",
+        "college": "StAntonys",
         "boat": 1
       },
       {
@@ -11849,7 +11853,7 @@
         "boat": 2
       },
       {
-        "college": "StAntonys",
+        "college": "StHildas",
         "boat": 1
       },
       {
@@ -11861,12 +11865,12 @@
         "boat": 2
       },
       {
-        "college": "StHildas",
+        "college": "StHughs",
         "boat": 1
       },
       {
-        "college": "StHughs",
-        "boat": 1
+        "college": "Pembroke",
+        "boat": 2
       },
       {
         "college": "ChristChurch",
@@ -11877,7 +11881,11 @@
         "boat": 2
       },
       {
-        "college": "Pembroke",
+        "college": "OslerHouse",
+        "boat": 1
+      },
+      {
+        "college": "Oriel",
         "boat": 2
       },
       {
@@ -11885,7 +11893,7 @@
         "boat": 2
       },
       {
-        "college": "Oriel",
+        "college": "Wadham",
         "boat": 2
       },
       {
@@ -11893,15 +11901,7 @@
         "boat": 2
       },
       {
-        "college": "Wadham",
-        "boat": 2
-      },
-      {
         "college": "GreenTempleton",
-        "boat": 2
-      },
-      {
-        "college": "Worcester",
         "boat": 2
       },
       {
@@ -11909,7 +11909,15 @@
         "boat": 2
       },
       {
+        "college": "Worcester",
+        "boat": 2
+      },
+      {
         "college": "StJohns",
+        "boat": 2
+      },
+      {
+        "college": "Keble",
         "boat": 2
       },
       {
@@ -11917,15 +11925,7 @@
         "boat": 3
       },
       {
-        "college": "Keble",
-        "boat": 2
-      },
-      {
         "college": "Hertford",
-        "boat": 2
-      },
-      {
-        "college": "StHughs",
         "boat": 2
       },
       {
@@ -11933,11 +11933,23 @@
         "boat": 2
       },
       {
-        "college": "New",
+        "college": "StHughs",
         "boat": 2
       },
       {
         "college": "StEdmundHall",
+        "boat": 2
+      },
+      {
+        "college": "RegentsPark",
+        "boat": 1
+      },
+      {
+        "college": "Lincoln",
+        "boat": 3
+      },
+      {
+        "college": "New",
         "boat": 2
       },
       {
@@ -11949,15 +11961,11 @@
         "boat": 2
       },
       {
-        "college": "StPeters",
-        "boat": 2
-      },
-      {
         "college": "Somerville",
         "boat": 2
       },
       {
-        "college": "Mansfield",
+        "college": "StPeters",
         "boat": 2
       },
       {
@@ -11965,7 +11973,11 @@
         "boat": 2
       },
       {
-        "college": "StAntonys",
+        "college": "Trinity",
+        "boat": 2
+      },
+      {
+        "college": "Mansfield",
         "boat": 2
       },
       {
@@ -11973,8 +11985,20 @@
         "boat": 2
       },
       {
+        "college": "StAntonys",
+        "boat": 2
+      },
+      {
+        "college": "StCatherines",
+        "boat": 2
+      },
+      {
         "college": "Queens",
         "boat": 2
+      },
+      {
+        "college": "University",
+        "boat": 3
       },
       {
         "college": "StHildas",
@@ -11983,6 +12007,18 @@
       {
         "college": "StPeters",
         "boat": 3
+      },
+      {
+        "college": "ChristChurch",
+        "boat": 3
+      },
+      {
+        "college": "Wolfson",
+        "boat": 4
+      },
+      {
+        "college": "CorpusChristi",
+        "boat": 2
       },
       {
         "college": "LadyMargaretHall",
@@ -11997,12 +12033,24 @@
         "boat": 3
       },
       {
+        "college": "Linacre",
+        "boat": 3
+      },
+      {
+        "college": "OslerHouse",
+        "boat": 2
+      },
+      {
         "college": "Pembroke",
         "boat": 3
       },
       {
         "college": "StAnnes",
         "boat": 2
+      },
+      {
+        "college": "Magdalen",
+        "boat": 3
       },
       {
         "college": "Oriel",
@@ -12021,8 +12069,24 @@
         "boat": 3
       },
       {
+        "college": "Wadham",
+        "boat": 3
+      },
+      {
         "college": "New",
         "boat": 3
+      },
+      {
+        "college": "Queens",
+        "boat": 3
+      },
+      {
+        "college": "Lincoln",
+        "boat": 4
+      },
+      {
+        "college": "Lincoln",
+        "boat": 5
       }
     ]
   }
