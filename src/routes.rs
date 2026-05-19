@@ -121,7 +121,7 @@ mod tests {
         let body_bytes = response.into_body().collect().await.unwrap().to_bytes();
         let body_str = std::str::from_utf8(&body_bytes).unwrap();
         let results: Vec<AnnualResult> = serde_json::from_str(body_str).unwrap();
-        assert_eq!(results.len(), 120, "Should contain 120 years of results");
+        assert_eq!(results.len(), 121, "Should contain 121 years of results");
     }
 
     #[tokio::test]
@@ -132,7 +132,7 @@ mod tests {
         let body_bytes = response.into_body().collect().await.unwrap().to_bytes();
         let body_str = std::str::from_utf8(&body_bytes).unwrap();
         let results: Vec<AnnualResult> = serde_json::from_str(body_str).unwrap();
-        assert_eq!(results.len(), 47, "Should contain 47 years of results");
+        assert_eq!(results.len(), 48, "Should contain 48 years of results");
     }
 
     #[tokio::test]
@@ -151,8 +151,8 @@ mod tests {
         assert_eq!(crew_result.crew().boat(), 1, "Boat should be 1");
         assert_eq!(
             crew_result.results().len(),
-            120,
-            "Should contain 120 years of results"
+            121,
+            "Should contain 121 years of results"
         );
     }
 
@@ -172,8 +172,8 @@ mod tests {
         assert_eq!(crew_result.crew().boat(), 2, "Boat should be 2");
         assert_eq!(
             crew_result.results().len(),
-            38,
-            "Should contain 38 years of results"
+            39,
+            "Should contain 39 years of results"
         );
     }
 
