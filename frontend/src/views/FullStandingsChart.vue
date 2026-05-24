@@ -10,9 +10,12 @@
     </div>
     <div class="chart-scroll-wrapper" @click.self="clearTooltip">
       <div class="chart-inner" :style="{ height: chartHeight + 'px', minWidth: 'min-content' }">
-        <canvas ref="chartCanvas" role="img" aria-label="Horizontal line chart showing Oxford Summer Eights standings by position over years, years on vertical axis">
-          Standings over time for all crews in Oxford Summer Eights.
-        </canvas>
+        <canvas 
+        ref="chartCanvas" 
+        role="img" 
+        aria-label="Horizontal line chart showing Oxford Summer Eights standings"
+        :style="{ minWidth: chartWidth + 'px', display: 'block' }"
+      ></canvas>
         <div
           v-if="clickedCrew && tooltipPos"
           class="crew-tooltip"
@@ -138,6 +141,16 @@ const COLLEGE_COLOURS = {
 }
 
 const PX_PER_YEAR = 28
+const MIN_CHART_WIDTH = 1200
+
+const chartHeight = computed(() => {
+  const years = [...new Set(data.value.map(d => d.year))]
+  return Math.max(400, years.length * PX_PER_YEAR + 80)
+})
+
+const chartWidth = computed(() => {
+  return Math.max(MIN_CHART_WIDTH, 800)  // Adjust based on content
+})
 
 const cache = {}
 const data = ref([])
@@ -233,11 +246,6 @@ function buildDatasets(crewMap, years, filterText) {
       }
     })
 }
-
-const chartHeight = computed(() => {
-  const years = [...new Set(data.value.map(d => d.year))]
-  return Math.max(400, years.length * PX_PER_YEAR + 80)
-})
 
 function initChart() {
   if (!chartCanvas.value || !data.value.length) return
@@ -357,6 +365,7 @@ function clearFade() {
   width: 100%;
   overflow-y: auto;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .chart-inner {
@@ -386,5 +395,9 @@ function clearFade() {
 .crew-tooltip-detail {
   font-size: 11px;
   opacity: 0.75;
+}
+
+canvas {
+  display: block;
 }
 </style>
