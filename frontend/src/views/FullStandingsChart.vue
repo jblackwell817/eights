@@ -9,7 +9,7 @@
       />
     </div>
     <div class="chart-scroll-wrapper" @click.self="clearTooltip">
-      <div class="chart-inner" :style="{ height: chartHeight + 'px' }">
+      <div class="chart-inner" :style="{ height: chartHeight + 'px', minWidth: 'min-content' }">
         <canvas ref="chartCanvas" role="img" aria-label="Horizontal line chart showing Oxford Summer Eights standings by position over years, years on vertical axis">
           Standings over time for all crews in Oxford Summer Eights.
         </canvas>
@@ -356,11 +356,13 @@ function clearFade() {
 .chart-scroll-wrapper {
   width: 100%;
   overflow-y: auto;
+  overflow-x: auto;
 }
 
 .chart-inner {
   position: relative;
   width: 100%;
+  min-width: min-content;
 }
 
 .crew-tooltip {
