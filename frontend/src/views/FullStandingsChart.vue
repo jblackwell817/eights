@@ -4,7 +4,7 @@
       <input
         v-model="filter"
         type="text"
-        placeholder="Filter by college"
+        placeholder="Filter by college or boat e.g. Balliol 2"
         @input="updateChart"
       />
     </div>
@@ -273,18 +273,18 @@ function initChart() {
           position: 'top',
           min: 1,
           max: maxPos,
-          title: { display: true, text: 'Position', font: { size: 12 }, color: '#888' },
+          title: { display: true, text: 'Position', font: { size: 12, family: 'serif' }, color: '#888' },
           grid: { color: 'rgba(128,128,128,0.1)' },
           ticks: {
             stepSize: 1,
             callback: v => Number.isInteger(v) ? v : '',
-            font: { size: 11 },
+            font: { size: 11, family: 'serif' },
           },
         },
         y: {
-          title: { display: true, text: 'Year', font: { size: 12 }, color: '#888' },
+          title: { display: true, text: 'Year', font: { size: 12, family: 'serif' }, color: '#888' },
           grid: { color: 'rgba(128,128,128,0.08)' },
-          ticks: { font: { size: 11 } },
+          ticks: { font: { size: 11, family: 'serif' } },
         },
       },
       onClick: (evt) => {
@@ -354,7 +354,7 @@ function clearFade() {
 
 <style scoped>
 .standings-chart {
-  font-family: sans-serif;
+  font-family: serif;
 }
 
 .controls {
@@ -399,5 +399,22 @@ function clearFade() {
 
 canvas {
   display: block;
+}
+
+.controls input {
+  min-width: 300px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-family: serif;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+@media (max-width: 640px) {
+  .controls input {
+    min-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
 </style>
