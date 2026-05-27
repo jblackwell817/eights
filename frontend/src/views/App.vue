@@ -21,6 +21,9 @@
       </router-link>
     </nav>
   </div>
+  <div class="header-text">
+      <p>View the results of Oxford Eights Week over time</p>
+  </div>
 
   <router-view />
 </template>
@@ -91,3 +94,13 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.header-text {
+  text-align: center;
+  font-family: serif;
+  padding: 1rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+</style>
